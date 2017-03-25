@@ -17,10 +17,12 @@ package net.deschulz.fragment0;
  */
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,8 +44,10 @@ public class HeadlinesFragment extends ListFragment {
         Log.i(MainActivity.TAG,"Headlines Fragment:onCreate()");
 
         // We need to use a different list item layout for devices older than Honeycomb
+        // Original code used layouts in Android.R.layout
+        // https://github.com/android/platform_frameworks_base/blob/master/core/res/res/layout
         int layout = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
-                android.R.layout.simple_list_item_activated_1 : android.R.layout.simple_list_item_1;
+                R.layout.des_list_item_new : R.layout.des_list_item;
 
         // Create an array adapter for the list view, using the Ipsum headlines array
         // This could also be accomplished by putting arrays into the layout -- des
@@ -57,6 +61,8 @@ public class HeadlinesFragment extends ListFragment {
         // nothing special to do here -- this just shows the lifecycle events
         Log.i(MainActivity.TAG,"Headlines Fragment:onCreateView()");
         return super.onCreateView(inflater,container,savedInstanceState);
+
+
     }
 
     @Override
